@@ -222,7 +222,7 @@ const faqs = [
 
             <button className=" btn-grad whatsapp">
               <FaWhatsapp/>
-              <Link to="" className="njing">
+              <Link to="https://wa.me/254742104220" className="njing">
                  Whatsapp
               </Link>
             </button>
