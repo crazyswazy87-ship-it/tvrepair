@@ -1,384 +1,349 @@
+import CardNav from "../../component/CardNav";
 import nyoi from "../../../public/assets/nyoi.png"
-import PillNav from "../../component/PillNav";
-import spana from "../../../public/assets/spana.png"
-import InfiniteMenu from "../../component/InfiniteMenu";
-import SpotlightCard from "../../component/SpotlightCard";
-import { FaInstagram, FaPhone, FaWhatsapp } from "react-icons/fa";
-import CurvedLoop from "../../component/CurvedLoop";
+import { motion } from "framer-motion";
+import bobmarley from "../../../public/assets/doorstep.png"
+import { FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
-import { BiChevronDown } from "react-icons/bi";
-import { useEffect, useRef } from "react";
-
-const Counter = ({ value, suffix = "" }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue);
-
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
-  }, [isInView, motionValue, value]);
-
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      if (ref.current) {
-        ref.current.textContent = Math.floor(latest) + suffix;
-      }
-    });
-
-    return () => unsubscribe();
-  }, [springValue, suffix]);
-
-  return <span ref={ref}>0{suffix}</span>;
-};
-
-const Home = () => {
-  
-const stats = [
-  { number: 200, suffix: "+", label: "TVs Repaired" },
-  { number: 5, suffix: "+", label: "Years Experience" },
-  { number: 30, suffix: " Min", label: "Average Response" },
-  { number: 100, suffix: "%", label: "Customer Satisfaction" },
-];
+import InfiniteCarousel from "../components/shared/InfiniteCarousel";
+import Time from '../../../public/assets/time.png'
+import location from "../../../public/assets/location.png"
+import Star from "../../../public/assets/star.png"
+import Pricing from "../../../public/assets/pricing.png"
+import Fast from "../../../public/assets/fast.png"
+import Personel from "../../../public/assets/personel.png"
+import fix from "../../../public/assets/fix.png"
+import shefi from "../../../public/assets/tick.png"
 
   const items = [
-  {
-    image: 'assets/mount.jpg',
-    link: '#',
-    title: '',
-    description: ' "TV Installation"'
-  },
-  {
-    image: 'assets/updates.jpg',
-    link: '#',
-    title: '',
-    description: 'Software Updates',
-  },
-  {
-    image: 'assets/replacement.jpg',
-    link: '#',
-    title: '',
-    description: 'No power',
-  },
-  {
-    image: 'assets/replacement.jpg',
-    link: '#',
-    title: '',
-    description: 'Screen replacement',
-  },
-  {
-    image: 'assets/back.jpg',
-    link: '#',
-    title: '',
-    description: 'Backlight Problems',
-  },
     {
-    image: 'assets/back.jpg',
-    link: '#',
-    title: '',
-    description: 'Mother Board issues',
-  },
+      label: "Home",
+      bgColor: "#1B1722",
+      textColor: "#fff",
+      links: [
+        { label: "Why us", ariaLabel: "About us" },
+        { label: "Faq", ariaLabel: "About us" }
+      ]
+    },
     {
-    image: 'assets/replacement.jpg',
-    link: '#',
-    title: '',
-    description: 'Black screen',
-  },
+      label: "Services", 
+      bgColor: "#2F293A",
+      textColor: "#fff",
+      links: [
+        { label: "Black Screen", ariaLabel: "Black screen" },
+        { label: "No sound", ariaLabel: "Sound" },
+        { label: "Tv mount", ariaLabel: "Mount on wall" },
+        { label: "Software updates", ariaLabel: "Software" },
+        { label: "Mother board issues", ariaLabel: "Hardware" },
+        { label: "Backlight problems", ariaLabel: "Hardware" },
+        { label: "Screen replacement", ariaLabel: "Hardware" },
+        { label: "No power", ariaLabel: "Hardware" },
+        { label: "Tv mount", ariaLabel: "services" }
+      ]
+    },
     {
-    image: 'assets/hdmi.jpg',
-    link: '#',
-    title: '',
-    description: 'No Sound',
-  },
+      label: "Conact",
+      bgColor: "#2F293A", 
+      textColor: "#fff",
+      links: [
+        { label: "Whatsapp", ariaLabel: "Lets Chat" },
+        { label: "Phone", ariaLabel: "Call us" },
+        { label: "Instagram", ariaLabel: "Lets Chat" }
+      ]
+    },
     {
-    image: 'assets/hdmi.jpg',
-    link: '#',
-    title: '',
-    description: 'Hdmi issues',
-  }
+      label: "Faq",
+      bgColor: "#2F293A", 
+      textColor: "#fff",
+      links: [
+        { label: "Email", ariaLabel: "Email us" },
+        { label: "Twitter", ariaLabel: "Twitter" },
+        { label: "LinkedIn", ariaLabel: "LinkedIn" }
+      ]
+    },
+    {
+      label: "Contact",
+      bgColor: "#2F293A", 
+      textColor: "#fff",
+      links: [
+        { label: "Email", ariaLabel: "Email us" },
+        { label: "Twitter", ariaLabel: "Twitter" },
+        { label: "LinkedIn", ariaLabel: "LinkedIn" }
+      ]
+    }
+  ];
+
+   const carouselImages = [
+  { src: Time, title: "24/7 emergency support", className: "caorosel-image" },
+  { src: Personel, title: "Experienced Technicians", className: "caorosel-image" },
+  { src: Pricing, title: "Affodable Pricing", className: "caorosel-image" },
+  { src: Fast, title: "Fast Response Team", className: "caorosel-image" },
+  { src: location, title: "Trusted Local Service", className: "caorosel-image" },
+  { src: Star, title: "Customer Satisfaction", className: "caorosel-image" }
 ];
 
-const faqs = [
+const services = [
   {
-    question: "Do you offer home service?",
-    answer:
-      "Yes, we provide home repair services for TVs and other electronics in selected areas.",
+    image: "assets/mount.jpg",
+    link: "#",
+    title: "TV Installation",
+    description: "TV Installation",
+    details:
+      "Professional wall mounting, setup, cable management, and configuration for all TV brands.",
   },
   {
-    question: "How much does TV repair cost?",
-    answer:
-      "The cost depends on the TV model and the type of fault. Contact us to talk with the an agent.",
+    image: "assets/updates.jpg",
+    link: "#",
+    title: "Software Updates",
+    description: "Software Updates",
+    details:
+      "Fix slow performance, app issues, and outdated firmware on Smart TVs and Android TVs.",
   },
   {
-    question: "Do you repair Smart TVs?",
-    answer:
-      "Yes, we repair Smart TVs from major brands including Samsung, LG, Sony, TCL, Hisense, Vitron, Skyworth,and more.",
+    image: "assets/replacement.jpg",
+    link: "#",
+    title: "No Power",
+    description: "No Power",
+    details:
+      "Diagnosis and repair of TVs that won't turn on due to power supply or motherboard faults.",
   },
   {
-    question: "Which areas do you serve?",
-    answer:
-      "We serve Nairobi and surrounding areas. Contact us to confirm availability in your location.",
+    image: "assets/cracked.jpg",
+    link: "#",
+    title: "Screen Replacement",
+    description: "Screen Replacement",
+    details:
+      "Replacement of cracked, damaged, or malfunctioning TV screens where repair is possible.",
   },
   {
-    question: "How long does repair take?",
-    answer:
-      "Most repairs are completed within 1hr to a whole day, depending on the issue and parts availability.",
+    image: "assets/handrepair.jpg",
+    link: "#",
+    title: "Backlight Problems",
+    description: "Backlight Problems",
+    details:
+      "Repair of dim displays, flickering screens, or TVs with sound but no picture.",
+  },
+  {
+    image: "assets/back.jpg",
+    link: "#",
+    title: "Motherboard Issues",
+    description: "Motherboard Issues",
+    details:
+      "Repair and replacement of faulty TV mainboards causing boot loops, freezing, or no display.",
+  },
+  {
+    image: "assets/replacement.jpg",
+    link: "#",
+    title: "Black Screen",
+    description: "Black Screen",
+    details:
+      "Troubleshooting and repair for TVs displaying a black screen while powered on.",
+  },
+  {
+    image: "assets/power.jpg",
+    link: "#",
+    title: "No Sound",
+    description: "No Sound",
+    details:
+      "Fix speaker, audio board, and software issues causing loss of sound.",
+  },
+  {
+    image: "assets/hdmi.jpg",
+    link: "#",
+    title: "HDMI Issues",
+    description: "HDMI Issues",
+    details:
+      "Repair damaged HDMI ports and resolve connectivity issues with decoders, consoles, and laptops.",
   },
 ];
 
+
+const Home = () => {
   return (
-    <div className="home-container ">
-      {/**topbar */}
-      <div className="kinena">
-        <PillNav
-          logo={spana}
-          logoAlt="Company Logo"
-          items={[
-            { label: 'Services', href: '#services' },
-            { label: 'Contact', href: '#contact' },
-            { label: 'Why us', href: '#why-us' },
-          ]}
-          activeHref="/"
-          className="custom-nav "
-          ease="power2.easeOut"
-          baseColor="#000000"
-          pillColor="#ffffff"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#000000"
-          theme="light"
-          initialLoadAnimation={false}
-        />
-      </div>
-        <div className="fortnight">
-          <motion.img
-            src={nyoi}
-            alt="nyoi"
-            className="nyoi"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-          />
+    <div className="home-container">
+      <CardNav
+      logo={nyoi}
+      logoAlt="Company Logo"
+      items={items}
+      baseColor="#fff"
+      menuColor="#000"
+      buttonBgColor="#111"
+      buttonTextColor="#fff"
+      ease="power3.out"
+      theme="light"
+    />
 
-        <div className="mamoshi">
-          <CurvedLoop 
-            marqueeText="We ✦ Are✦ Professional ✦ Reliable ✦ Trusted ✦We ✦ Serve ✦ All ✦ Areas ✦ Around ✦ Nairobi ✦ Call us ✦Today ✦ "
-            speed={5}
-            curveAmount={400}
-            direction="right"
-            interactive
-            className="custom-text-styl"
-          />
-        </div>
-        </div>
-
-      {/*divisions*/}
-       <div className="bars">
-       <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-        <SpotlightCard className=" step custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-            <span className="cry">
-               TV Repair & Installation Services in Nairobi
+    {/*intor pic*/}
+    <div className="fortnight">
+      <img 
+        src={bobmarley}
+        alt="tv technician"
+        className="bob"
+      />
+      {/*division */}
+      <motion.div>
+        <div className="skeng">
+          <div className="skilli">
+             <span className="cryy">
+               Kenya's Trusted TV Repair Experts
             </span>
-            <span className="baby">
-              Fast, affordable, and reliable TV repairs at your doorstep
+            <span className="babyy">
+              Fast, affordable, and reliable TV repair services for homes and business across
+              Kenya. Available 24/7 with experienced technicians you can trust
             </span>
 
-            <span className="baby">
-              We'll diagnose and repair it quickly at your home
-            </span>
-         </SpotlightCard> 
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          id="contact"
-        >
-          <SpotlightCard className=" step custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-
-            <button className="btn-grad call">
-              <FaPhone />
-              <Link to="https://call.whatsapp.com/voice/E2WPLydgxlBgp9PolvlRqQ" className="njing">
-                 0742104220
-              </Link>
-            </button>
-
-            <button className="btn-grad instagram">
-              <FaInstagram />
-              <Link to="https://www.instagram.com/pillmaster.510?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="njing">
-                 Instagram
-              </Link>
-            </button>
-
-            <button className=" btn-grad whatsapp">
+             <button className=" btn-grad whatsapp">
               <FaWhatsapp/>
               <Link to="https://wa.me/254742104220" className="njing">
-                 Whatsapp
+                  Whatsapp
               </Link>
             </button>
-          
-           </SpotlightCard>
-          </motion.div>
+            
+          </div>
+
+          <div className="skilli beng">
+            aa
+          </div>
+
         </div>
 
-      {/**animations */}
-        <div id="services" className="gwash" >
-          <InfiniteMenu items={items}
-            scale={1.1}
+      </motion.div>
+    </div>
+
+    
+    {/* CAROUSEL */}
+    <motion.div
+      className="tooltip"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+    <InfiniteCarousel images={carouselImages} speed={25} />
+    </motion.div>
+
+      {/*technicians */}
+    <div className="skengdon">
+      <motion.div>
+        <div className="skillibeng">
+          <img 
+            src={fix}
+            alt="KENYA TV REPAIR"
+            className="fix"
           />
         </div>
-      {/**contact */}
-    <div className="bars">
-  
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <SpotlightCard className=" step custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-           {/* STATS */}
-          <section className="py-20 bg-lime-500">
-            <div className="max-w-7xl mx-auto px-2 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((item) => (
-                <motion.div
-                  key={item.label}
-                  whileInView={{ opacity: [0, 1], y: [50, 0] }}
-                  viewport={{ once: true }}
-                  className="text-center "
-                >
-                <div className="mula">
-                  <h2 className="text-4xl md:text-5xl font-bold">
-                  <Counter
-                    value={item.number}
-                    suffix={item.suffix}
-                  />
-                </h2>
-                  <p className="tula">{item.label}</p>
-                </div>
-                </motion.div>
-              ))}
-            </div>  
-         </section>
-        </SpotlightCard> 
-    </motion.div> 
+      </motion.div>
 
-        <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-          <SpotlightCard className=" step custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-            <div>
+      <motion.div>
+        <div className="skillibeng">
+          <span className="cry-two">
+              Welcome to Kenya TV Repair 
+          </span>
+          <span className="baby-two">
+            We're not just technicians, we're your neighbours who care.
+            At Kenya Tv Repair, we believe in honest, transparent service with no hidden costs
+            or suprises
+          </span>
+          <span className="baby-two">
+            As Kenya's trusted TV repair, we've built our repuatation on reliability,
+            proffessionalism and competitive pricing.
+            Our team of certified technicians is commited to getting your television 
+            back tp perfect working condition.
+          </span>
 
-              <h2 className="vosti">
-                Meet Steve
-              </h2>
-
-              <p className="stephen">
-                Certified TV Technician with 5+ years experience
-                repairing Smart TVs, LED TVs, OLED TVs and Android TVs.
-              </p>
-            </div>
-              <button className="whatsapp btn-grad">
-                <Link to="https://call.whatsapp.com/voice/E2WPLydgxlBgp9PolvlRqQ" className="njing">
-                Get in touch
-                </Link>
-              </button>
-          
-          </SpotlightCard>
-        </motion.div>  
         </div>
+      </motion.div>
 
-        <motion.div>
-          <div className="smash">
-            <p className="vietnam">Tvs we deal with</p>
-            <CurvedLoop 
-              marqueeText="Samsung ✦ LG ✦ Hisense ✦ Skyworth ✦ Sony ✦ Vitron ✦ TLC ✦ Apple Tv ✦ "
-              speed={4}
-              curveAmount={0}
-              direction="left"
-              interactive
-              className="custom-text-style"
+      <motion.div>
+        <div className="tiki">
+            <span className="vybz">
+              <img 
+                src={shefi}
+                alt="tick"
+                height={25}
+              />
+              Licensed Technicians
+            </span>
+            <span className="vybz">
+              <img 
+                src={shefi}
+                alt="tick"
+                height={25}
+              />
+              Transparent Pricing
+            </span>
+            <span className="vybz">
+             <img 
+                src={shefi}
+                alt="tick"
+                height={25}
+              />
+              Genuine Parts
+            </span>
+            <span className="vybz">
+             <img 
+                src={shefi}
+                alt="tick"
+                height={25}
+              />
+              Service Guarantee
+            </span>
+          </div>
+      </motion.div>
+
+    </div>
+
+    <div className="pretty">
+      <span className="pusi"> Our services </span>
+      <span className="pusssy">
+        Proffesional 
+        <span className="bull"> TV Repair services </span>
+      </span>
+      <span className="brest">
+        Expert repair and maintainance for all television brands and types across Kenya
+      </span>
+
+    </div>
+
+    <div className="skenglondon">
+
+      
+      {services.map((service) => (
+      <motion.div>
+        <div className="badman" key={service.title}>
+          <div className="gaza">
+            <img
+              src={service.image}
+              alt="service"
+              className="mbotoo"
             />
           </div>
 
-        </motion.div>
+          <div className="slim">
+            <span className="indu">
+              {service.title}
+            </span>
 
-        {/*why us */}
-        <motion.div id="why-us">
-          <section className="py-24 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-              <h2 className="vietnam">
-                Why Choose Us
-              </h2>
-    
-              <div className="skyfall">
-                {[
-                  "✦ We Come To You ✦",
-                  "✦ Same-Day Service ✦",
-                  "✦ Affordable Pricing ✦",
-                  "✦ Genuine Parts ✦",
-                  "✦ Experienced Technicians ✦",
-                  "✦ Nairobi Wide Coverage ✦",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="mapema"
-                  >
-                    
-                    <h3 className="font-semibold">{item}</h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </motion.div>
-
-         {/* FAQ */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <section className="bg-red-400 py-24">
-          <div className="songs">
-            <h2 className="text-center text-5xl font-bold mb-15">
-              Frequently Asked Questions
-            </h2>
-
-            <div className=" skyfall">
-              {faqs.map((faq) => (
-                <details
-                  key={faq.question}
-                  className="bg-white rounded-xl p-5 shadow"
-                >
-                  <summary className="cursor-pointer flex justify-between items-center">
-                    {faq.question}
-                    <BiChevronDown />
-                  </summary>
-
-                  <p className="answero">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
+            <p>{service.details}</p>
           </div>
-        </section>
-      </motion.div>
+        </div>
+        </motion.div>
+      ))}
+
+    </div>
+
+    <motion.div>
+      <div className="timee">
+        how it works
+
+      <span className="bresto">
+          Getting your appliances fixed is easy. Just follow these simple steps
+      </span>
+
+
+      </div>
+    </motion.div>
+
+
+
 
     </div>
   )

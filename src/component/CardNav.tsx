@@ -175,7 +175,7 @@ const CardNav: React.FC<CardNavProps> = ({
           <div className="logo-container">
             <img src={logo} alt={logoAlt} className="logoo" />
             <span className='miristaa'>
-              Block Seven
+              Kenya tv Repair
             </span>
           </div>
 
@@ -184,7 +184,7 @@ const CardNav: React.FC<CardNavProps> = ({
             className="card-nav-cta-button"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
-            Explore Beyond
+            Contact us
           </button>
         </div>
 
